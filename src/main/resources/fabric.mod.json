@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "banana-alert",
+	"version": "${version}",
+	"name": "Banana Alert",
+	"description": "",
+	"authors": [
+		"Tanoflame"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/Tanoflame/Banana-Alert"
+	},
+	"license": "MIT",
+	"icon": "assets/banana-alert/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"net.tanoflame.bananaalert.BananaAlert"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
