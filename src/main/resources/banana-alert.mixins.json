@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "net.tanoflame.bananaalert.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerEntityMixin",
+    "PlayerListMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
