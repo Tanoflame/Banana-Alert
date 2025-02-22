@@ -7,7 +7,7 @@ public class PlayerListManager {
     private static final List<PlayerList> LISTS = new ArrayList<>();
 
     public static List<PlayerList> getLists() {
-        return LISTS;
+        return new ArrayList<>(LISTS);
     }
 
     public static void addList(PlayerList list) {
