@@ -7,12 +7,17 @@ import java.util.UUID;
 
 public class PlayerDataEntry {
     private final List<PlayerDataEntry> alts;
-    private final UUID uuid;
+    private UUID uuid;
     private String name;
     private String notes;
 
     public PlayerDataEntry(UUID uuid) {
         this.uuid = uuid;
+        this.alts = new ArrayList<>();
+    }
+
+    public PlayerDataEntry(String name) {
+        this.name = name;
         this.alts = new ArrayList<>();
     }
 

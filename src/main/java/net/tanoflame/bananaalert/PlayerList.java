@@ -43,6 +43,10 @@ public class PlayerList {
         foundEntry.ifPresent(this::removeEntry);
     }
 
+    public void moveEntry(PlayerDataEntry entry, PlayerList list) {
+        // TODO: Move specified entry to specified list, along with all registered alts
+    }
+
     public String getName() {
         return this.name;
     }
