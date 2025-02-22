@@ -1,6 +1,7 @@
 package net.tanoflame.bananaalert;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PlayerList {
     private final List<PlayerDataEntry> entries = new ArrayList<>();
@@ -8,7 +9,8 @@ public class PlayerList {
     private String description;
 
     public PlayerList(String name) {
-
+        this.name = name;
+        this.description = "";
     }
 
     public List<PlayerDataEntry> getEntries() {
@@ -16,11 +18,19 @@ public class PlayerList {
     }
 
     public void addEntry(PlayerDataEntry entry) {
-        this.entries.add(entry);
+        if (!PlayerListManager.hasPlayerDataEntry(entry)) {
+            this.entries.add(entry);
+        }
+
+        if (!PlayerListManager.getPlayerData().contains(entry)) {
+            PlayerListManager.addPlayerData(entry);
+        }
     }
 
     public void removeEntry(PlayerDataEntry entry) {
         this.entries.remove(entry);
+
+        PlayerListManager.removePlayerData(entry);
     }
 
     public void removeEntry(UUID uuid) {
@@ -47,5 +57,15 @@ public class PlayerList {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean hasPlayerDataEntry(PlayerDataEntry entry) {
+        AtomicBoolean found = new AtomicBoolean(false);
+        this.entries.stream().forEach(dataEntry -> {
+            if (dataEntry == entry) {
+                found.set(true);
+            }
+        });
+        return found.get();
     }
 }
