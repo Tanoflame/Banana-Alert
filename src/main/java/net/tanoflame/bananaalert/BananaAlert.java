@@ -3,12 +3,8 @@ package net.tanoflame.bananaalert;
 import net.fabricmc.api.ClientModInitializer;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
-import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.Formatting;
-import net.tanoflame.bananaalert.event.KeyInputHandler;
 import net.tanoflame.bananaalert.storage.PlayerListStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +20,6 @@ public class BananaAlert implements ClientModInitializer {
 		ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
 			PlayerListStorage.saveDataFile();
 		});
-
-		KeyInputHandler.register();
-
-		LOGGER.info(MinecraftClient.getInstance().getGameProfile().getId().toString());
 	}
 
 	public static boolean isDevEnvironment() {
