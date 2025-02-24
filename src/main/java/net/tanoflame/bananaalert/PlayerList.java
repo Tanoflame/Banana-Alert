@@ -1,50 +1,27 @@
 package net.tanoflame.bananaalert;
 
+import net.minecraft.util.Formatting;
+
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PlayerList {
-    private final List<PlayerDataEntry> entries = new ArrayList<>();
+    private final UUID id;
     private String name;
     private String description;
+    private Formatting color;
 
     public PlayerList(String name) {
+        this(UUID.randomUUID(), name);
+    }
+
+    public PlayerList(UUID id, String name) {
+        this.id = id;
         this.name = name;
         this.description = "";
     }
 
-    public List<PlayerDataEntry> getEntries() {
-        return new ArrayList<>(entries);
-    }
-
-    public void addEntry(PlayerDataEntry entry) {
-        if (!PlayerListManager.hasPlayerDataEntry(entry)) {
-            this.entries.add(entry);
-        }
-
-        if (!PlayerListManager.getPlayerData().contains(entry)) {
-            PlayerListManager.addPlayerData(entry);
-        }
-    }
-
-    public void removeEntry(PlayerDataEntry entry) {
-        this.entries.remove(entry);
-
-        PlayerListManager.removePlayerData(entry);
-    }
-
-    public void removeEntry(UUID uuid) {
-        Optional<PlayerDataEntry> foundEntry = this.entries.stream().filter(entry -> entry.getUUID().equals(uuid)).findFirst();
-        foundEntry.ifPresent(this::removeEntry);
-    }
-
-    public void removeEntry(String name) {
-        Optional<PlayerDataEntry> foundEntry = this.entries.stream().filter(entry -> entry.getName().equals(name)).findFirst();
-        foundEntry.ifPresent(this::removeEntry);
-    }
-
-    public void moveEntry(PlayerDataEntry entry, PlayerList list) {
-        // TODO: Move specified entry to specified list, along with all registered alts
+    public UUID getId() {
+        return this.id;
     }
 
     public String getName() {
@@ -63,13 +40,14 @@ public class PlayerList {
         this.description = description;
     }
 
-    public boolean hasPlayerDataEntry(PlayerDataEntry entry) {
-        AtomicBoolean found = new AtomicBoolean(false);
-        this.entries.stream().forEach(dataEntry -> {
-            if (dataEntry == entry) {
-                found.set(true);
-            }
-        });
-        return found.get();
+    public Formatting getColor() {
+        return this.color;
+    }
+
+    public void setColor(Formatting color) {
+        if (!color.isColor()) {
+            throw new IllegalArgumentException("Invalid color: " + color);
+        }
+        this.color = color;
     }
 }
