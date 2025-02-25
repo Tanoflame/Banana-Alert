@@ -80,10 +80,8 @@ public class PlayerListManager {
 //            playerId = apiPlayerId;
 //        }
 
-
         PlayerEntry entry = addPlayerEntry(listId, playerId);
         entry.setName(name);
-        entry.setPlayerListId(listId);
 
         return entry;
     }
@@ -99,6 +97,7 @@ public class PlayerListManager {
     public static boolean addPlayerEntry(UUID listId, PlayerEntry entry) {
         if (!PLAYER_ENTRIES.containsKey(entry.getUUID()) && LISTS.containsKey(listId)) {
             PLAYER_ENTRIES.put(entry.getUUID(), entry);
+            entry.setPlayerListId(listId);
             return true;
         }
         return false;
