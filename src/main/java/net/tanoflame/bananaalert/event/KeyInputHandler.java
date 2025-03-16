@@ -12,24 +12,28 @@ import net.minecraft.util.hit.HitResult;
 import net.tanoflame.bananaalert.PlayerEntry;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
-import net.tanoflame.bananaalert.gui.ListsViewGui;
-import net.tanoflame.bananaalert.gui.ListsViewScreen;
+import net.tanoflame.bananaalert.gui.ClientScreen;
+import net.tanoflame.bananaalert.gui.description.PlayerListOverviewScreen;
 import net.tanoflame.bananaalert.util.Util;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_ALERT = "key.category.bananaalert";
+    public static final String KEY_OPEN_LISTS_VIEW = "key.bananalert.open_lists_view";
     public static final String KEY_TOGGLE_LIST1 = "key.bananalert.toggle_list_1";
     public static final String KEY_TOGGLE_LIST2 = "key.bananalert.toggle_list_2";
     public static final String KEY_TOGGLE_LIST3 = "key.bananalert.toggle_list_3";
 
+    public static KeyBinding openListsViewKey;
     public static KeyBinding toggleList1Key;
     public static KeyBinding toggleList2Key;
     public static KeyBinding toggleList3Key;
 
     public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (!PlayerListManager.getLists().isEmpty()) {
+            if (openListsViewKey.wasPressed()) {
+                ClientScreen.openScreen(new PlayerListOverviewScreen());
+            } else if (!PlayerListManager.getLists().isEmpty()) {
                 if (toggleList1Key.wasPressed()) {
                     toggleRaycast((PlayerList) PlayerListManager.getLists().values().toArray()[0]);
                 } else if (toggleList2Key.wasPressed()) {
@@ -42,6 +46,12 @@ public class KeyInputHandler {
     }
 
     public static void register() {
+        openListsViewKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                KEY_OPEN_LISTS_VIEW,
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_KP_ENTER,
+                KEY_CATEGORY_ALERT
+        ));
 
         toggleList1Key = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 KEY_TOGGLE_LIST1,

@@ -20,6 +20,7 @@ public class BananaAlert implements ClientModInitializer {
 		ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
 			PlayerListStorage.saveDataFile();
 		});
+		ClientLifecycleEvents.CLIENT_STOPPING.register(this::onStopping);
 
 		KeyInputHandler.register();
 	}
