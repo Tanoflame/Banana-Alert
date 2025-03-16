@@ -2,10 +2,9 @@ package net.tanoflame.bananaalert;
 
 import com.google.gson.annotations.SerializedName;
 import net.tanoflame.bananaalert.util.Util;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerListManager {
     @SerializedName("lists")
@@ -57,6 +56,7 @@ public class PlayerListManager {
     }
 
     // GetPlayerEntry, player uuid
+    @Nullable
     public static PlayerEntry getPlayerEntry(UUID uuid) {
         return PLAYER_ENTRIES.get(uuid);
     }
@@ -133,5 +133,9 @@ public class PlayerListManager {
         if (LISTS.containsKey(listId)) {
             entry.setPlayerListId(listId);
         }
+    }
+
+    public static List<PlayerEntry> getPlayersOfList(UUID listId) {
+        return PLAYER_ENTRIES.values().stream().filter(entry -> entry.getPlayerListId().equals(listId)).toList();
     }
 }

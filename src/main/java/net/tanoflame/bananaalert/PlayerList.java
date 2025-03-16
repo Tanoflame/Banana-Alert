@@ -9,6 +9,7 @@ public class PlayerList {
     private String name;
     private String description;
     private Formatting color;
+    private boolean warnings;
 
     public PlayerList(String name) {
         this(UUID.randomUUID(), name);
@@ -41,13 +42,28 @@ public class PlayerList {
     }
 
     public Formatting getColor() {
+        if (this.color == null) {
+
+        }
         return this.color;
     }
 
     public void setColor(Formatting color) {
+        if (color == null) {
+            color = Formatting.GRAY;
+        }
+
         if (!color.isColor()) {
             throw new IllegalArgumentException("Invalid color: " + color);
         }
         this.color = color;
+    }
+
+    public void setWarningsEnabled(boolean warnPlayer) {
+        this.warnings = warnPlayer;
+    }
+
+    public boolean isWarningsEnabled() {
+        return this.warnings;
     }
 }

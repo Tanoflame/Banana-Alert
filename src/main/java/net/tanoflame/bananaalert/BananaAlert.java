@@ -24,6 +24,10 @@ public class BananaAlert implements ClientModInitializer {
 		KeyInputHandler.register();
 	}
 
+	public void onStopping(MinecraftClient client) {
+		PlayerListStorage.saveDataFile();
+	}
+
 	public static boolean isDevEnvironment() {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
 	}
