@@ -3,8 +3,12 @@ package net.tanoflame.bananaalert;
 import net.fabricmc.api.ClientModInitializer;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.ActionResult;
 import net.tanoflame.bananaalert.event.KeyInputHandler;
+import net.tanoflame.bananaalert.event.PlayerAttackEvent;
 import net.tanoflame.bananaalert.storage.PlayerListStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +21,9 @@ public class BananaAlert implements ClientModInitializer {
 	public void onInitializeClient() {
 		PlayerListStorage.loadDataFile();
 
-		ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {
-			PlayerListStorage.saveDataFile();
-		});
 		ClientLifecycleEvents.CLIENT_STOPPING.register(this::onStopping);
+
+		AttackEntityCallback.EVENT.register(new PlayerAttackEvent());
 
 		KeyInputHandler.register();
 	}
@@ -31,6 +34,10 @@ public class BananaAlert implements ClientModInitializer {
 
 	public static boolean isDevEnvironment() {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
+	}
+
+	public static void showError(String message) {
+		System.out.println(message); // For now, just print the error to the console
 	}
 }
 
