@@ -3,6 +3,7 @@ package net.tanoflame.bananaalert;
 import net.minecraft.util.Util;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -14,16 +15,8 @@ public class PlayerEntry {
     private String notes;
     private UUID playerListId;
 
-    public PlayerEntry(UUID uuid) {
-        // TODO: Add uuid check against Mojang API and name lookup
+    public PlayerEntry(UUID uuid, String name) {
         this.uuid = uuid;
-        this.alts = new ArrayList<>();
-        this.playerListId = Util.NIL_UUID;
-    }
-
-    public PlayerEntry(String name) {
-        // TODO: Add name check against Mojang API and uuid lookup
-        this.uuid = UUID.randomUUID();
         this.name = name;
         this.alts = new ArrayList<>();
         this.playerListId = Util.NIL_UUID;

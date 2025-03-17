@@ -45,12 +45,16 @@ public class AddPlayerScreen extends LightweightGuiDescription {
             String playerNotes = notesField.getText();
 
             if (!playerName.isEmpty()) {
-                PlayerEntry newPlayer = new PlayerEntry(playerName);
+                PlayerEntry newPlayer = PlayerListManager.addPlayerEntry(playerList.getId(), playerName);
+
+                if (newPlayer == null) {
+                    BananaAlert.showError("Failed to retrieve player by that name.");
+                    return;
+                }
+
                 if (!playerNotes.isEmpty()) {
                     newPlayer.setNotes(playerNotes);
                 }
-
-                PlayerListManager.addPlayerEntry(playerList.getId(), newPlayer);
 //                closeScreen(); // Close the screen after saving
             } else {
                 BananaAlert.showError("Both name and notes are required.");

@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import net.tanoflame.bananaalert.util.Util;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.*;
 
 public class PlayerListManager {
@@ -66,35 +67,51 @@ public class PlayerListManager {
         return Util.findByField(PLAYER_ENTRIES, PlayerEntry::getName, name);
     }
 
-    // TODO: Change to checking MojangAPI
     // AddPlayerEntry, listId and player name
-    public static PlayerEntry addPlayerEntry(UUID listId, String name) {
+    public @Nullable static PlayerEntry addPlayerEntry(UUID listId, String name) {
         UUID playerId = null;
         if (BananaAlert.isDevEnvironment()) {
             playerId = UUID.randomUUID();
-        } // else {
-//            UUID apiPlayerId = MoAPI.getPlayerFromUsername(name).getUUID();
-//            if (apiPlayerId == Util.NIL_UUID) {
-//                return false;
-//            }
-//            playerId = apiPlayerId;
-//        }
+        } else {
+            try {
+                UUID uuid = BananaAlert.LOOKUP_CLIENT.getUUIDFromName(name);
 
-        PlayerEntry entry = addPlayerEntry(listId, playerId);
-        entry.setName(name);
+                if (uuid.equals(Util.NIL_UUID)) {
+                    return null;
+                }
+
+                playerId = uuid;
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        PlayerEntry entry = new PlayerEntry(playerId, name);
+        addPlayerEntry(listId, entry);
 
         return entry;
     }
 
     // AddPlayerEntry, listId and player uuid
-    public static PlayerEntry addPlayerEntry(UUID listId, UUID playerId) {
-        PlayerEntry entry = new PlayerEntry(playerId);
+    public @Nullable static PlayerEntry addPlayerEntry(UUID listId, UUID playerId) {
+        String name;
+        try {
+            name = BananaAlert.LOOKUP_CLIENT.getNameFromUUID(playerId);
+
+            if (name == null) {
+                return null;
+            }
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        PlayerEntry entry = new PlayerEntry(playerId, name);
         addPlayerEntry(listId, entry);
         return entry;
     }
 
     // AddPlayerEntry, listId and entry
-    public static boolean addPlayerEntry(UUID listId, PlayerEntry entry) {
+    private @Nullable static boolean addPlayerEntry(UUID listId, PlayerEntry entry) {
         if (!PLAYER_ENTRIES.containsKey(entry.getUUID()) && LISTS.containsKey(listId)) {
             PLAYER_ENTRIES.put(entry.getUUID(), entry);
             entry.setPlayerListId(listId);
@@ -105,7 +122,10 @@ public class PlayerListManager {
 
     // RemovePlayerEntry, player uuid
     public static void removePlayerEntry(UUID uuid) {
-        removePlayerEntry(getPlayerEntry(uuid));
+        PlayerEntry entry = getPlayerEntry(uuid);
+        if (entry == null) return;
+
+        removePlayerEntry(entry);
     }
 
     // RemovePlayerEntry, player name
