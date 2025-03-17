@@ -17,29 +17,29 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
 
     public AddPlayerListScreen() {
         WGridPanel root = new WGridPanel();
-        root.setSize(GRID_COLUMNS * GRID_SIZE, GRID_ROWS * GRID_SIZE); // Set the screen size.
+        root.setSize(GRID_COLUMNS * GRID_SIZE, GRID_ROWS * GRID_SIZE);
         root.setGaps(GRID_GAP, GRID_GAP);
         root.setInsets(Insets.ROOT_PANEL);
 
-        WLabel nameLabel = new WLabel(Text.translatable("gui.banana-alertlist_screen.list_name"));
+        WLabel nameLabel = new WLabel(Text.translatable("gui.banana-alert.list_screen.list_name"));
         root.add(nameLabel, 0, 0, 3, 1);
 
         WTextField nameField = new WTextField();
         root.add(nameField, 3, 0, 7, 1);
 
-        WLabel descriptionLabel = new WLabel(Text.translatable("gui.banana-alertlist_screen.description"));
+        WLabel descriptionLabel = new WLabel(Text.translatable("gui.banana-alert.list_screen.description"));
         root.add(descriptionLabel, 0, 1, 3, 1);
 
         WTextField descriptionField = new WTextField();
         root.add(descriptionField, 3, 1, 7, 1);
 
-        WLabel colorLabel = new WLabel(Text.translatable("gui.banana-alertlist_screen.color"));
+        WLabel colorLabel = new WLabel(Text.translatable("gui.banana-alert.list_screen.color"));
         root.add(colorLabel, 0, 2, 3, 1);
 
         WTextField colorField = new WTextField();
         root.add(colorField, 3, 2, 7, 1);
 
-        WToggleButton warningToggle = new WToggleButton(Text.translatable("gui.banana-alertlist_screen.warning"));
+        WToggleButton warningToggle = new WToggleButton(Text.translatable("gui.banana-alert.list_screen.warning"));
         root.add(warningToggle, 2, 3, 8, 1);
 
         WButton saveButton = new WButton(Text.translatable("gui.banana-alert.save"));
@@ -49,9 +49,9 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
             String color = colorField.getText();
             boolean warningsEnabled = warningToggle.getToggle();
 
-            if (!name.isEmpty() && !color.isEmpty()) {
+            if (!name.isEmpty()) {
                 PlayerList newList = new PlayerList(name);
-                newList.setColor(Formatting.byName(color));
+                newList.setColor(color.isEmpty()? null : Formatting.byName(color));
                 newList.setDescription(description);
                 newList.setWarningsEnabled(warningsEnabled);
                 PlayerListManager.addPlayerList(newList);
