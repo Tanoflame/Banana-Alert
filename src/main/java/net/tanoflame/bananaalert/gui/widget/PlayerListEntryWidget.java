@@ -24,13 +24,9 @@ public class PlayerListEntryWidget extends WGridPanel {
         }
         label.formatted(Formatting.BOLD);
         WLabel nameLabel = new WLabel(label);
-        nameLabel.addTooltip(new TooltipBuilder().add(
-                Text.of("UUID: " + list.getId()),
-                Text.of("Players: " + PlayerListManager.getPlayersOfList(list.getId()))
-        ));
         add(nameLabel, 0, 0, gridColumns - 3, 1);
 
-        WButton editButton = new WButton(Text.of("Edit"));
+        WButton editButton = new WButton(Text.translatable("gui.banana-alert.edit"));
         editButton.setOnClick(() -> {
             ClientScreen.openScreen(new PlayerListDetailsScreen(list));
         });

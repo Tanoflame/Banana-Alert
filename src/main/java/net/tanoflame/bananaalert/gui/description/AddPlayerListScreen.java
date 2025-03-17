@@ -21,28 +21,28 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
         root.setGaps(GRID_GAP, GRID_GAP);
         root.setInsets(Insets.ROOT_PANEL);
 
-        WLabel nameLabel = new WLabel(Text.of("List Name:"));
+        WLabel nameLabel = new WLabel(Text.translatable("gui.banana-alertlist_screen.list_name"));
         root.add(nameLabel, 0, 0, 3, 1);
 
         WTextField nameField = new WTextField();
         root.add(nameField, 3, 0, 7, 1);
 
-        WLabel descriptionLabel = new WLabel(Text.of("Description:"));
+        WLabel descriptionLabel = new WLabel(Text.translatable("gui.banana-alertlist_screen.description"));
         root.add(descriptionLabel, 0, 1, 3, 1);
 
         WTextField descriptionField = new WTextField();
         root.add(descriptionField, 3, 1, 7, 1);
 
-        WLabel colorLabel = new WLabel(Text.of("Color Code:"));
+        WLabel colorLabel = new WLabel(Text.translatable("gui.banana-alertlist_screen.color"));
         root.add(colorLabel, 0, 2, 3, 1);
 
         WTextField colorField = new WTextField();
         root.add(colorField, 3, 2, 7, 1);
 
-        WToggleButton warningToggle = new WToggleButton(Text.of("Enable Warnings"));
+        WToggleButton warningToggle = new WToggleButton(Text.translatable("gui.banana-alertlist_screen.warning"));
         root.add(warningToggle, 2, 3, 8, 1);
 
-        WButton saveButton = new WButton(Text.of("Save List"));
+        WButton saveButton = new WButton(Text.translatable("gui.banana-alert.save"));
         saveButton.setOnClick(() -> {
             String name = nameField.getText();
             String description = descriptionField.getText();
@@ -62,7 +62,7 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
         });
         root.add(saveButton, 0, 5, 5, 1);
 
-        WButton cancelButton = new WButton(Text.of("Cancel"));
+        WButton cancelButton = new WButton(Text.translatable("gui.banana-alert.cancel"));
 //        cancelButton.setOnClick(this::closeScreen);
         root.add(cancelButton, 5, 5, 5, 1);
 

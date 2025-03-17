@@ -25,21 +25,21 @@ public class AddPlayerScreen extends LightweightGuiDescription {
         root.setGaps(GRID_GAP, GRID_GAP);
         root.setInsets(Insets.ROOT_PANEL);
 
-        WLabel nameLabel = new WLabel(Text.of("Name:"));
+        WLabel nameLabel = new WLabel(Text.translatable("gui.banana-alert.player_screen.name"));
         nameLabel.setVerticalAlignment(VerticalAlignment.CENTER);
         root.add(nameLabel, 0, 0, 2, 1);
 
         WTextField nameField = new WTextField();
         root.add(nameField, 2, 0, 8, 1);
 
-        WLabel notesLabel = new WLabel(Text.of("Notes:"));
+        WLabel notesLabel = new WLabel(Text.translatable("gui.banana-alert.player_screen.notes"));
         notesLabel.setVerticalAlignment(VerticalAlignment.CENTER);
         root.add(notesLabel, 0, 1, 2, 1);
 
         WTextField notesField = new WTextField();
         root.add(notesField, 2, 1, 8, 1);
 
-        WButton saveButton = new WButton(Text.of("Save Player"));
+        WButton saveButton = new WButton(Text.translatable("gui.banana-alert.save"));
         saveButton.setOnClick(() -> {
             String playerName = nameField.getText();
             String playerNotes = notesField.getText();
@@ -63,7 +63,7 @@ public class AddPlayerScreen extends LightweightGuiDescription {
         root.add(saveButton, 0, 4, 5, 1);
 
         // Cancel Button
-        WButton cancelButton = new WButton(Text.of("Cancel"));
+        WButton cancelButton = new WButton(Text.translatable("gui.banana-alert.cancel"));
 //        cancelButton.setOnClick(this::closeScreen);
         root.add(cancelButton, 5, 4, 5, 1);
 

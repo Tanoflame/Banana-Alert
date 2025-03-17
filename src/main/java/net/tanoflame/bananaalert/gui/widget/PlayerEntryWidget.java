@@ -20,7 +20,7 @@ public class PlayerEntryWidget extends WGridPanel {
         this.add(nameLabel, 0, 0, gridColumns - 3, 1);
 
         // Edit Button
-        WButton editButton = new WButton(Text.of("Edit"));
+        WButton editButton = new WButton(Text.translatable("gui.banana-alert.edit"));
         editButton.setOnClick(() -> ClientScreen.openScreen(new EditPlayerScreen(player)));
         this.add(editButton, gridColumns - 3, 0, 2, 1);
 

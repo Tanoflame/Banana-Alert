@@ -26,7 +26,7 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
         root.setGaps(GRID_GAP, GRID_GAP);
         root.setInsets(Insets.ROOT_PANEL);
 
-        WLabel titleLabel = new WLabel(Text.of("Editing: " + playerList.getName()));
+        WLabel titleLabel = new WLabel(Text.translatable("gui.banana-alert.list_details.title", playerList.getName()));
         root.add(titleLabel, 0, 0, GRID_COLUMNS, 1);
 
         WTextField nameField = new WTextField();
@@ -41,7 +41,7 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
         colorField.setText(playerList.getColor().getName());
         root.add(colorField, 0, 3, GRID_COLUMNS, 1);
 
-        WToggleButton warningToggle = new WToggleButton(Text.of("Warn Players"));
+        WToggleButton warningToggle = new WToggleButton(Text.translatable("gui.banana-alert.list_screen.warning"));
         warningToggle.setToggle(playerList.isWarningsEnabled());
         root.add(warningToggle, 0, 4, 2, 1);
 
@@ -56,11 +56,11 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
             playerListPanel.add(entry, 0, i, GRID_COLUMNS, 1);
         }
 
-        WButton addPlayerButton = new WButton(Text.of("Add Player"));
+        WButton addPlayerButton = new WButton(Text.translatable("gui.banana-alert.list_details.add_player"));
         addPlayerButton.setOnClick(() -> ClientScreen.openScreen(new AddPlayerScreen(playerList)));
         root.add(addPlayerButton, 0, 9, 3, 1);
 
-        WButton saveButton = new WButton(Text.of("Save"));
+        WButton saveButton = new WButton(Text.translatable("gui.banana-alert.save"));
         saveButton.setOnClick(() -> {
             playerList.setName(nameField.getText());
             playerList.setDescription(descriptionField.getText());

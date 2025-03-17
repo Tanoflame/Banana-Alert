@@ -1,6 +1,25 @@
 {
-  "key.category.bananaalert": "Banana Alert",
-  "key.bananalert.open_lists_view": "Open Lists Overview",
+  "key.category.banana-alert": "Banana Alert",
+  "key.banana-alert.open_lists_view": "Open Lists Overview",
 
-  "gui.bananaalert.listsview.hello": "Hello World!"
+  "gui.banana-alert.save": "Save",
+  "gui.banana-alert.delete": "Delete",
+  "gui.banana-alert.cancel": "Cancel",
+  "gui.banana-alert.edit": "Edit",
+
+  "gui.banana-alert.list_overview.title": "Player List Manager",
+  "gui.banana-alert.list_overview.add_list": "Add New List",
+  "gui.banana-alert.list_overview.settings": "Settings",
+
+  "gui.banana-alert.list_screen.list_name": "List Name:",
+  "gui.banana-alert.list_screen.description": "Description:",
+  "gui.banana-alert.list_screen.color": "Color Code:",
+  "gui.banana-alert.list_screen.warning": "Enable Warnings",
+
+  "gui.banana-alert.list_details.title": "Editing: %s",
+  "gui.banana-alert.list_details.add_player": "Add Player",
+
+  "gui.banana-alert.player_screen.uuid": "UUID:",
+  "gui.banana-alert.player_screen.name": "Name:",
+  "gui.banana-alert.player_screen.notes": "Notes:"
 }

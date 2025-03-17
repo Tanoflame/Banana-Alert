@@ -26,7 +26,7 @@ public class PlayerListOverviewScreen extends LightweightGuiDescription {
         root.setInsets(Insets.ROOT_PANEL);
 
         // Add a title label at the top of the screen
-        WLabel titleLabel = new WLabel(Text.of("Player List Manager"));
+        WLabel titleLabel = new WLabel(Text.translatable("gui.banana-alert.list_overview.title"));
         root.add(titleLabel, 0, 0, GRID_COLUMNS, 1);
 
         // Create a panel that will contain the player list entries
@@ -51,7 +51,7 @@ public class PlayerListOverviewScreen extends LightweightGuiDescription {
         root.add(scrollablePlayerList, 0, 1, GRID_COLUMNS, GRID_ROWS - 5);
 
         // Button to add a new player list
-        WButton addPlayerListButton = new WButton(Text.of("Add New Player List"));
+        WButton addPlayerListButton = new WButton(Text.translatable("gui.banana-alert.list_overview.add_list"));
         addPlayerListButton.setOnClick(() -> {
             // Open the screen to add a new player list
             ClientScreen.openScreen(new AddPlayerListScreen());
@@ -59,7 +59,7 @@ public class PlayerListOverviewScreen extends LightweightGuiDescription {
         root.add(addPlayerListButton, 0, GRID_ROWS - 4, GRID_COLUMNS / 2, 1);
 
         // Button to open global settings
-        WButton settingsButton = new WButton(Text.of("Settings"));
+        WButton settingsButton = new WButton(Text.translatable("gui.banana-alert.list_overview.settings"));
         settingsButton.setOnClick(() -> {
             // Open the Global Settings screen
 //            openScreen(new GlobalSettingsScreen());

@@ -25,21 +25,24 @@ public class EditPlayerScreen extends LightweightGuiDescription {
         root.setInsets(Insets.ROOT_PANEL);
 
         // Player UUID Display (Non-Editable)
-        WLabel uuidLabel = new WLabel(Text.of("UUID:"));
+        WLabel uuidLabel = new WLabel(Text.translatable("gui.banana-alert.player_screen.uuid"));
         root.add(uuidLabel, 0, 0, 2, 1);
 
-        WLabel uuidValue = new WLabel(Text.of(player.getUUID().toString()));
+        WTextField uuidValue = new WTextField();
+        uuidValue.setEditable(false);
+        uuidValue.setText(player.getUUID().toString());
         root.add(uuidValue, 2, 0, GRID_COLUMNS - 2, 1);
 
-        WLabel nameLabel = new WLabel(Text.of("Name:"));
+        WLabel nameLabel = new WLabel(Text.translatable("gui.banana-alert.player_screen.name"));
         nameLabel.setVerticalAlignment(VerticalAlignment.CENTER);
         root.add(nameLabel, 0, 1, 2, 1);
 
         WTextField nameField = new WTextField();
+        nameField.setEditable(false);
         nameField.setText(player.getName());
         root.add(nameField, 2, 1, GRID_COLUMNS - 2, 1);
 
-        WLabel notesLabel = new WLabel(Text.of("Notes:"));
+        WLabel notesLabel = new WLabel(Text.translatable("gui.banana-alert.player_screen.notes"));
         notesLabel.setVerticalAlignment(VerticalAlignment.CENTER);
         root.add(notesLabel, 0, 2, 2, 1);
 
@@ -47,7 +50,7 @@ public class EditPlayerScreen extends LightweightGuiDescription {
         notesField.setText(player.getNotes() == null ? "" : player.getNotes());
         root.add(notesField, 2, 2, GRID_COLUMNS - 2, 1);
 
-        WButton saveButton = new WButton(Text.of("Save"));
+        WButton saveButton = new WButton(Text.translatable("gui.banana-alert.save"));
         saveButton.setOnClick(() -> {
             String newName = nameField.getText();
             String newNotes = notesField.getText();
@@ -62,14 +65,14 @@ public class EditPlayerScreen extends LightweightGuiDescription {
         });
         root.add(saveButton, 0, 5, 4, 1);
 
-        WButton deleteButton = new WButton(Text.of("Delete"));
+        WButton deleteButton = new WButton(Text.translatable("gui.banana-alert.delete"));
         deleteButton.setOnClick(() -> {
             PlayerListManager.removePlayerEntry(player);
 //            closeScreen();
         });
         root.add(deleteButton, 4, 5, 4, 1);
 
-        WButton cancelButton = new WButton(Text.of("Cancel"));
+        WButton cancelButton = new WButton(Text.translatable("gui.banana-alert.cancel"));
 //        cancelButton.setOnClick(this::closeScreen);
         root.add(cancelButton, 8, 5, 4, 1);
 

@@ -18,10 +18,10 @@ import net.tanoflame.bananaalert.util.Util;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyInputHandler {
-    public static final String KEY_CATEGORY_ALERT = "key.category.bananaalert";
-    public static final String KEY_OPEN_LISTS_VIEW = "key.bananalert.open_lists_view";
-    public static final String KEY_TOGGLE_LIST1 = "key.bananalert.toggle_list_1";
-    public static final String KEY_TOGGLE_LIST2 = "key.bananalert.toggle_list_2";
+    public static final String KEY_CATEGORY_ALERT = "key.category.banana-alert";
+    public static final String KEY_OPEN_LISTS_VIEW = "key.banana-alert.open_lists_view";
+    public static final String KEY_TOGGLE_LIST1 = "key.banana-alert.toggle_list_1";
+    public static final String KEY_TOGGLE_LIST2 = "key.banana-alert.toggle_list_2";
 
     public static KeyBinding openListsViewKey;
     public static KeyBinding toggleList1Key;
