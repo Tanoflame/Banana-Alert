@@ -1,7 +1,10 @@
 package net.tanoflame.bananaalert.util;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.toast.SystemToast;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Box;
@@ -41,4 +44,16 @@ public class Util extends net.minecraft.util.Util{
         );
     }
 
+    public static void DisplayToast(Text title, Text description) {
+        DisplayToast(SystemToast.Type.PERIODIC_NOTIFICATION, title, description);
+    }
+
+    public static void DisplayToast(Long duration, Text title, Text description) {
+        DisplayToast(new SystemToast.Type(duration), title, description);
+    }
+
+    public static void DisplayToast(SystemToast.Type type, Text title, Text description) {
+        MinecraftClient.getInstance().getToastManager().add(SystemToast.create(MinecraftClient.getInstance(),
+                type, title, description));
+    }
 }

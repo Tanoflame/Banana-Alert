@@ -1,6 +1,9 @@
 {
   "key.category.banana-alert": "Banana Alert",
   "key.banana-alert.open_lists_view": "Open Lists Overview",
+  
+  "toast.banana-alert.warning.title": "Attacked player",
+  "toast.banana-alert.warning.description": "You hit %s, a member of %s",
 
   "gui.banana-alert.save": "Save",
   "gui.banana-alert.delete": "Delete",

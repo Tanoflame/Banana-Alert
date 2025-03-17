@@ -7,12 +7,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
+import net.tanoflame.bananaalert.BananaAlert;
 import net.tanoflame.bananaalert.PlayerEntry;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
+import net.tanoflame.bananaalert.util.Util;
 import org.jetbrains.annotations.Nullable;
 
 public class PlayerAttackEvent implements AttackEntityCallback {
@@ -35,10 +38,9 @@ public class PlayerAttackEvent implements AttackEntityCallback {
                 PlayerList list = PlayerListManager.getList(entry.getPlayerListId());
 
                 if (list.isWarningsEnabled()) {
-                    MinecraftClient.getInstance().getToastManager().add(SystemToast.create(MinecraftClient.getInstance(),
-                            SystemToast.Type.PERIODIC_NOTIFICATION,
-                            Text.of("Test"),
-                            Text.of("You hit a player")));
+                    Util.DisplayToast(Text.translatable("toast.banana-alert.warning.title"), Text.translatable("toast.banana-alert.warning.description",
+                            Text.of(targetPlayer.getName()).copy().formatted(Formatting.ITALIC),
+                            Text.of(list.getName()).copy().formatted(Formatting.ITALIC)));
                     this.lastDisplayed = System.currentTimeMillis();
                 }
             }
