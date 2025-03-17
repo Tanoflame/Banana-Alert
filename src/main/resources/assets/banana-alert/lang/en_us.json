@@ -5,6 +5,11 @@
   "toast.banana-alert.warning.title": "Attacked player",
   "toast.banana-alert.warning.description": "You hit %s, a member of %s",
 
+  "toast.banana-alert.error": "Error",
+  "toast.banana-alert.error.require_list_name": "List name is required",
+  "toast.banana-alert.error.retrieve_player_by_name": "List name is required",
+  "toast.banana-alert.error.require_player_name": "Player name is required",
+
   "gui.banana-alert.save": "Save",
   "gui.banana-alert.delete": "Delete",
   "gui.banana-alert.cancel": "Cancel",

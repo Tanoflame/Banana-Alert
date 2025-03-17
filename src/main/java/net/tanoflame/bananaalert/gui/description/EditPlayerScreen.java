@@ -60,7 +60,7 @@ public class EditPlayerScreen extends LightweightGuiDescription {
                 player.setNotes(newNotes);
 //                closeScreen();
             } else {
-                BananaAlert.showError("Both name and notes are required.");
+                BananaAlert.showError(Text.translatable("gui.banana-alert.error.require_player_name"));
             }
         });
         root.add(saveButton, 0, 5, 4, 1);

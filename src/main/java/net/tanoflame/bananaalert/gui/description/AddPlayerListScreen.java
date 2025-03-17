@@ -57,7 +57,7 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
                 PlayerListManager.addPlayerList(newList);
 //                closeScreen();
             } else {
-                BananaAlert.showError("List name and color are required.");
+                BananaAlert.showError(Text.translatable("toast.banana-alert.error.require_list_name"));
             }
         });
         root.add(saveButton, 0, 5, 5, 1);

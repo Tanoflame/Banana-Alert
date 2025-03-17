@@ -6,10 +6,12 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 import net.tanoflame.bananaalert.event.KeyInputHandler;
 import net.tanoflame.bananaalert.event.PlayerAttackEvent;
 import net.tanoflame.bananaalert.storage.PlayerListStorage;
 import net.tanoflame.bananaalert.util.ProfileLookupClient;
+import net.tanoflame.bananaalert.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,10 +39,8 @@ public class BananaAlert implements ClientModInitializer {
 		return FabricLoader.getInstance().isDevelopmentEnvironment();
 	}
 
-	public static void showError(String message) {
-		System.out.println(message); // For now, just print the error to the console
+	public static void showError(Text text) {
+		System.out.println(text.getLiteralString());
+		Util.DisplayToast(Text.translatable("toast.banana-alert.error"), text);
 	}
 }
-
-// TODO: Look into mojang api for uuid and name tag
-// https://minecraft.wiki/w/Mojang_API#Query_player's_UUID

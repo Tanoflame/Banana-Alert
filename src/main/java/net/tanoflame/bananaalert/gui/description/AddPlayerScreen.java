@@ -48,7 +48,7 @@ public class AddPlayerScreen extends LightweightGuiDescription {
                 PlayerEntry newPlayer = PlayerListManager.addPlayerEntry(playerList.getId(), playerName);
 
                 if (newPlayer == null) {
-                    BananaAlert.showError("Failed to retrieve player by that name.");
+                    BananaAlert.showError(Text.translatable("toast.banana-alert.error.retrieve_player_by_name"));
                     return;
                 }
 
@@ -57,7 +57,7 @@ public class AddPlayerScreen extends LightweightGuiDescription {
                 }
 //                closeScreen(); // Close the screen after saving
             } else {
-                BananaAlert.showError("Both name and notes are required.");
+                BananaAlert.showError(Text.translatable("toast.banana-alert.error.require_player_name"));
             }
         });
         root.add(saveButton, 0, 4, 5, 1);
