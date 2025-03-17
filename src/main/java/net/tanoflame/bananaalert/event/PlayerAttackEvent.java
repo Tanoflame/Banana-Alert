@@ -26,7 +26,8 @@ public class PlayerAttackEvent implements AttackEntityCallback {
 
     @Override
     public ActionResult interact(PlayerEntity player, World world, Hand hand, Entity entity, @Nullable EntityHitResult hitResult) {
-        if (System.currentTimeMillis() >= lastDisplayed + DISPLAY_COOLDOWN && entity.isPlayer()) {
+        if (player.getUuid().equals(MinecraftClient.getInstance().player.getUuid()) &&
+                System.currentTimeMillis() >= lastDisplayed + DISPLAY_COOLDOWN && entity.isPlayer()) {
             PlayerEntity targetPlayer = (PlayerEntity) entity;
             PlayerEntry entry = PlayerListManager.getPlayerEntry(targetPlayer.getUuid());
 
