@@ -22,26 +22,23 @@ public class KeyInputHandler {
     public static final String KEY_OPEN_LISTS_VIEW = "key.bananalert.open_lists_view";
     public static final String KEY_TOGGLE_LIST1 = "key.bananalert.toggle_list_1";
     public static final String KEY_TOGGLE_LIST2 = "key.bananalert.toggle_list_2";
-    public static final String KEY_TOGGLE_LIST3 = "key.bananalert.toggle_list_3";
 
     public static KeyBinding openListsViewKey;
     public static KeyBinding toggleList1Key;
     public static KeyBinding toggleList2Key;
-    public static KeyBinding toggleList3Key;
 
     public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (openListsViewKey.wasPressed()) {
                 ClientScreen.openScreen(new PlayerListOverviewScreen());
-            } else if (!PlayerListManager.getLists().isEmpty()) {
-                if (toggleList1Key.wasPressed()) {
-                    toggleRaycast((PlayerList) PlayerListManager.getLists().values().toArray()[0]);
-                } else if (toggleList2Key.wasPressed()) {
-                    toggleRaycast((PlayerList) PlayerListManager.getLists().values().toArray()[0]);
-                } else if (toggleList3Key.wasPressed()) {
-                    toggleRaycast((PlayerList) PlayerListManager.getLists().values().toArray()[0]);
-                }
             }
+//            else if (!PlayerListManager.getLists().isEmpty()) {
+//                if (toggleList1Key.wasPressed()) {
+//                    toggleRaycast((PlayerList) PlayerListManager.getLists().values().toArray()[0]);
+//                } else if (toggleList2Key.wasPressed()) {
+//                    toggleRaycast((PlayerList) PlayerListManager.getLists().values().toArray()[0]);
+//                }
+//            }
         });
     }
 
@@ -53,26 +50,19 @@ public class KeyInputHandler {
                 KEY_CATEGORY_ALERT
         ));
 
-        toggleList1Key = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                KEY_TOGGLE_LIST1,
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_KP_1,
-                KEY_CATEGORY_ALERT
-        ));
-
-        toggleList2Key = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                KEY_TOGGLE_LIST2,
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_KP_2,
-                KEY_CATEGORY_ALERT
-        ));
-
-        toggleList3Key = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                KEY_TOGGLE_LIST3,
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_KP_3,
-                KEY_CATEGORY_ALERT
-        ));
+//        toggleList1Key = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+//                KEY_TOGGLE_LIST1,
+//                InputUtil.Type.KEYSYM,
+//                GLFW.GLFW_KEY_KP_1,
+//                KEY_CATEGORY_ALERT
+//        ));
+//
+//        toggleList2Key = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+//                KEY_TOGGLE_LIST2,
+//                InputUtil.Type.KEYSYM,
+//                GLFW.GLFW_KEY_KP_2,
+//                KEY_CATEGORY_ALERT
+//        ));
 
         registerKeyInputs();
     }
