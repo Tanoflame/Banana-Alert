@@ -1,11 +1,9 @@
 package net.tanoflame.bananaalert.util;
 
 import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
 import net.tanoflame.bananaalert.BananaAlert;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URI;
