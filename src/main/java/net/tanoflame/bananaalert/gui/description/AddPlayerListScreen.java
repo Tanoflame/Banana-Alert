@@ -8,6 +8,7 @@ import net.minecraft.util.Formatting;
 import net.tanoflame.bananaalert.BananaAlert;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
+import net.tanoflame.bananaalert.gui.ClientScreen;
 
 public class AddPlayerListScreen extends LightweightGuiDescription {
     private static final int GRID_COLUMNS = 10;
@@ -55,7 +56,7 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
                 newList.setDescription(description);
                 newList.setWarningsEnabled(warningsEnabled);
                 PlayerListManager.addPlayerList(newList);
-//                closeScreen();
+                ClientScreen.closeScreen();
             } else {
                 BananaAlert.showError(Text.translatable("toast.banana-alert.error.require_list_name"));
             }
@@ -63,7 +64,7 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
         root.add(saveButton, 0, 5, 5, 1);
 
         WButton cancelButton = new WButton(Text.translatable("gui.banana-alert.cancel"));
-//        cancelButton.setOnClick(this::closeScreen);
+        cancelButton.setOnClick(ClientScreen::closeScreen);
         root.add(cancelButton, 5, 5, 5, 1);
 
         setRootPanel(root);

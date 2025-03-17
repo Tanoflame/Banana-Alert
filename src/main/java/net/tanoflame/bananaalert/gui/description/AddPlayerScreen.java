@@ -12,6 +12,7 @@ import net.tanoflame.bananaalert.BananaAlert;
 import net.tanoflame.bananaalert.PlayerEntry;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
+import net.tanoflame.bananaalert.gui.ClientScreen;
 
 public class AddPlayerScreen extends LightweightGuiDescription {
     private static final int GRID_COLUMNS = 10;
@@ -21,7 +22,7 @@ public class AddPlayerScreen extends LightweightGuiDescription {
 
     public AddPlayerScreen(PlayerList playerList) {
         WGridPanel root = new WGridPanel();
-        root.setSize(GRID_COLUMNS * GRID_SIZE, GRID_ROWS * GRID_SIZE); // Set the screen size.
+        root.setSize(GRID_COLUMNS * GRID_SIZE, GRID_ROWS * GRID_SIZE);
         root.setGaps(GRID_GAP, GRID_GAP);
         root.setInsets(Insets.ROOT_PANEL);
 
@@ -55,16 +56,15 @@ public class AddPlayerScreen extends LightweightGuiDescription {
                 if (!playerNotes.isEmpty()) {
                     newPlayer.setNotes(playerNotes);
                 }
-//                closeScreen(); // Close the screen after saving
+                ClientScreen.closeScreen();
             } else {
                 BananaAlert.showError(Text.translatable("toast.banana-alert.error.require_player_name"));
             }
         });
         root.add(saveButton, 0, 4, 5, 1);
 
-        // Cancel Button
         WButton cancelButton = new WButton(Text.translatable("gui.banana-alert.cancel"));
-//        cancelButton.setOnClick(this::closeScreen);
+        cancelButton.setOnClick(ClientScreen::closeScreen);
         root.add(cancelButton, 5, 4, 5, 1);
 
         setRootPanel(root);

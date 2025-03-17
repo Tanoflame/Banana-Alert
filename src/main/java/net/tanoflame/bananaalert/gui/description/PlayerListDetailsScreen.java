@@ -66,7 +66,7 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
             playerList.setDescription(descriptionField.getText());
             playerList.setColor(Formatting.byName(colorField.getText()));
             playerList.setWarningsEnabled(warningToggle.getToggle());
-//            closeScreen();
+            ClientScreen.closeScreen();
         });
         root.add(saveButton, 7, 9, 3, 1);
 

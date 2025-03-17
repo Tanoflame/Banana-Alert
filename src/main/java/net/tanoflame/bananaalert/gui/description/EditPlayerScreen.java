@@ -11,6 +11,7 @@ import net.minecraft.text.Text;
 import net.tanoflame.bananaalert.BananaAlert;
 import net.tanoflame.bananaalert.PlayerEntry;
 import net.tanoflame.bananaalert.PlayerListManager;
+import net.tanoflame.bananaalert.gui.ClientScreen;
 
 public class EditPlayerScreen extends LightweightGuiDescription {
     private static final int GRID_COLUMNS = 12;
@@ -58,7 +59,7 @@ public class EditPlayerScreen extends LightweightGuiDescription {
             if (!newName.isEmpty() && !newNotes.isEmpty()) {
                 player.setName(newName);
                 player.setNotes(newNotes);
-//                closeScreen();
+                ClientScreen.closeScreen();
             } else {
                 BananaAlert.showError(Text.translatable("gui.banana-alert.error.require_player_name"));
             }
@@ -68,12 +69,12 @@ public class EditPlayerScreen extends LightweightGuiDescription {
         WButton deleteButton = new WButton(Text.translatable("gui.banana-alert.delete"));
         deleteButton.setOnClick(() -> {
             PlayerListManager.removePlayerEntry(player);
-//            closeScreen();
+            ClientScreen.closeScreen();
         });
         root.add(deleteButton, 4, 5, 4, 1);
 
         WButton cancelButton = new WButton(Text.translatable("gui.banana-alert.cancel"));
-//        cancelButton.setOnClick(this::closeScreen);
+        cancelButton.setOnClick(ClientScreen::closeScreen);
         root.add(cancelButton, 8, 5, 4, 1);
 
         setRootPanel(root);
