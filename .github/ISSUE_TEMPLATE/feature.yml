@@ -1,0 +1,32 @@
+name: Feature Request
+description: "Suggest a new feature or improvement for the mod"
+labels: [ "type: enhancement" ]
+body:
+  - type: textarea
+    attributes:
+      label: Feature Description
+      description: >
+        Describe the feature you would like to see implemented. Include details about 
+        what the feature does, why it would be useful, and how it improves the mod.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: >
+        Provide any additional context, screenshots, or examples that might help us 
+        understand your request better.
+    validations:
+      required: false
+
+  - type: checkboxes
+    attributes:
+      label: Confirmation
+      description: >
+        Please confirm the following before submitting your feature request:
+      options:
+        - label: I have checked to ensure this feature has not already been requested.
+          required: true
+        - label: I have provided a clear and detailed description of the feature.
+          required: true

@@ -1,0 +1,51 @@
+name: Bug
+description: "Report and issue with the mod"
+labels: [ "type: bug" ]
+body:
+  - type: dropdown
+    attributes:
+      label: Type of Bug
+      description: >
+        Select the category that best describes the bug you are reporting.
+        This helps us understand the nature of the issue.
+      multiple: false
+      options:
+        - General (e.g., crashes, unexpected behavior)
+        - GUI (e.g., interface glitches, display issues)
+        - Importing/Exporting (e.g., issues with data import/export)
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: >
+        Provide a detailed description of the issue, including what you expected to happen 
+        and what actually occurred. If possible, include screenshots or videos to help us 
+        better understand the problem.
+    validations:
+      required: true
+  
+  - type: input
+    attributes:
+      label: Game Log (Optional)
+      description: >
+        If applicable, please include the log file from your Minecraft instance. 
+        You can find it in the "logs" folder, usually named "latest.log". 
+        Upload the log to https://mclo.gs/ and paste the link here.
+    validations:
+      required: false
+  
+  - type: checkboxes
+    attributes:
+      label: Confirmation
+      description: >
+        Please confirm the following to help us process your issue more efficiently:
+      options:
+        - label: I have searched for duplicate issues and none match my problem.
+          required: true
+        - label: I have provided sufficient details to reproduce the issue.
+          required: true
+        - label: I have attached logs or other relevant files, if applicable.
+          required: false
