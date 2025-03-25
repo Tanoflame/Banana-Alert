@@ -1,5 +1,6 @@
 package net.tanoflame.bananaalert.gui.description;
 
+import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
@@ -48,7 +49,7 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
         WGridPanel playerListPanel = new WGridPanel();
         WScrollPanel scrollablePlayerList = new WScrollPanel(playerListPanel);
         scrollablePlayerList.setScrollingVertically(TriState.TRUE);
-        root.add(scrollablePlayerList, 0, 5, GRID_COLUMNS, 5);
+        root.add(scrollablePlayerList, 0, 5, GRID_COLUMNS, 4);
 
         List<PlayerEntry> players = PlayerListManager.getPlayersOfList(playerList.getId());
         for (int i = 0; i < players.size(); i++) {
