@@ -48,6 +48,7 @@ public class EditPlayerScreen extends LightweightGuiDescription {
         root.add(notesLabel, 0, 2, 2, 1);
 
         WTextField notesField = new WTextField();
+        notesField.setMaxLength(256);
         notesField.setText(player.getNotes() == null ? "" : player.getNotes());
         root.add(notesField, 2, 2, GRID_COLUMNS - 2, 1);
 

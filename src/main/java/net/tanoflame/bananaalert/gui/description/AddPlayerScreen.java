@@ -38,6 +38,7 @@ public class AddPlayerScreen extends LightweightGuiDescription {
         root.add(notesLabel, 0, 1, 2, 1);
 
         WTextField notesField = new WTextField();
+        notesField.setMaxLength(256);
         root.add(notesField, 2, 1, 8, 1);
 
         WButton saveButton = new WButton(Text.translatable("gui.banana-alert.save"));
