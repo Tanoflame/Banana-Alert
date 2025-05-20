@@ -1,7 +1,5 @@
 package net.tanoflame.bananaalert.gui.description;
 
-import io.github.cottonmc.cotton.gui.client.BackgroundPainter;
-import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.fabricmc.fabric.api.util.TriState;
@@ -11,17 +9,22 @@ import net.tanoflame.bananaalert.PlayerEntry;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
+import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
 import net.tanoflame.bananaalert.gui.widget.PlayerEntryWidget;
 
 import java.util.List;
 
-public class PlayerListDetailsScreen extends LightweightGuiDescription {
+public class PlayerListDetailsScreen extends RefreshableGUIDescription {
     private static final int GRID_COLUMNS = 10;
     private static final int GRID_ROWS = 10;
     private static final int GRID_SIZE = 18;
     private static final int GRID_GAP = 5;
 
+    private final PlayerList playerList;
+    private final WGridPanel playerListPanel;
+
     public PlayerListDetailsScreen(PlayerList playerList) {
+        this.playerList = playerList;
         WGridPanel root = new WGridPanel();
         root.setSize(GRID_COLUMNS * GRID_SIZE, GRID_ROWS * GRID_SIZE);
         root.setGaps(GRID_GAP, GRID_GAP);
@@ -46,19 +49,15 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
         warningToggle.setToggle(playerList.isWarningsEnabled());
         root.add(warningToggle, 0, 4, 2, 1);
 
-        WGridPanel playerListPanel = new WGridPanel();
+        this.playerListPanel = new WGridPanel();
         WScrollPanel scrollablePlayerList = new WScrollPanel(playerListPanel);
         scrollablePlayerList.setScrollingVertically(TriState.TRUE);
         root.add(scrollablePlayerList, 0, 5, GRID_COLUMNS, 4);
 
-        List<PlayerEntry> players = PlayerListManager.getPlayersOfList(playerList.getId());
-        for (int i = 0; i < players.size(); i++) {
-            PlayerEntryWidget entry = new PlayerEntryWidget(players.get(i), GRID_SIZE, GRID_COLUMNS);
-            playerListPanel.add(entry, 0, i, GRID_COLUMNS, 1);
-        }
+        refreshGUI();
 
         WButton addPlayerButton = new WButton(Text.translatable("gui.banana-alert.list_details.add_player"));
-        addPlayerButton.setOnClick(() -> ClientScreen.openScreen(new AddPlayerScreen(playerList)));
+        addPlayerButton.setOnClick(() -> ClientScreen.openScreen(new AddPlayerScreen(playerList, this)));
         root.add(addPlayerButton, 0, 9, 3, 1);
 
         WButton saveButton = new WButton(Text.translatable("gui.banana-alert.save"));
@@ -73,5 +72,21 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
 
         setRootPanel(root);
         root.validate(this);
+    }
+
+    @Override
+    public void refreshGUI() {
+        List<WWidget> children = this.playerListPanel.streamChildren().toList();
+        for (WWidget child : children) {
+            this.playerListPanel.remove(child);
+        }
+
+        List<PlayerEntry> players = PlayerListManager.getPlayersOfList(playerList.getId());
+        for (int i = 0; i < players.size(); i++) {
+            PlayerEntryWidget entry = new PlayerEntryWidget(players.get(i), GRID_SIZE, GRID_COLUMNS, this);
+            this.playerListPanel.add(entry, 0, i, GRID_COLUMNS, 1);
+        }
+
+        this.playerListPanel.validate(this);
     }
 }

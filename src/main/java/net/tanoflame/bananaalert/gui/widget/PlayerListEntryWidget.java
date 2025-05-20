@@ -9,11 +9,12 @@ import net.minecraft.util.Formatting;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
+import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
 import net.tanoflame.bananaalert.gui.description.PlayerListDetailsScreen;
 
 public class PlayerListEntryWidget extends WGridPanel {
 
-    public PlayerListEntryWidget(PlayerList list, int gridSize, int gridColumns) {
+    public PlayerListEntryWidget(PlayerList list, int gridSize, int gridColumns, RefreshableGUIDescription parent) {
         super(gridSize);
         this.setSize(gridColumns * gridSize, gridSize);
 
@@ -33,8 +34,9 @@ public class PlayerListEntryWidget extends WGridPanel {
 
         WButton deleteButton = new WButton(Text.of("X"));
         deleteButton.setOnClick(() -> {
+            System.out.println("Delete");
             PlayerListManager.removeList(list.getId());
-            // TODO: Refresh the UI after deletion
+            parent.refreshGUI();
         });
         add(deleteButton, gridColumns - 1, 0, 2, 1);
     }

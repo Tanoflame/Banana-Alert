@@ -7,11 +7,12 @@ import net.minecraft.text.Text;
 import net.tanoflame.bananaalert.PlayerEntry;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
+import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
 import net.tanoflame.bananaalert.gui.description.EditPlayerScreen;
 
 public class PlayerEntryWidget extends WGridPanel {
 
-    public PlayerEntryWidget(PlayerEntry player, int gridSize, int gridColumns) {
+    public PlayerEntryWidget(PlayerEntry player, int gridSize, int gridColumns, RefreshableGUIDescription parent) {
         super(gridSize);
         this.setSize(gridColumns * 18, 18);
 
@@ -28,7 +29,7 @@ public class PlayerEntryWidget extends WGridPanel {
         WButton removeButton = new WButton(Text.of("X"));
         removeButton.setOnClick(() -> {
             PlayerListManager.removePlayerEntry(player);
-            // refresh screen
+            parent.refreshGUI();
         });
         this.add(removeButton, gridColumns - 1, 0, 1, 1);
     }

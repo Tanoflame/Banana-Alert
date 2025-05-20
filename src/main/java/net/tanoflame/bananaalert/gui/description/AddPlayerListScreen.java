@@ -9,6 +9,7 @@ import net.tanoflame.bananaalert.BananaAlert;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
+import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
 
 public class AddPlayerListScreen extends LightweightGuiDescription {
     private static final int GRID_COLUMNS = 10;
@@ -16,7 +17,7 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
     private static final int GRID_SIZE = 18;
     private static final int GRID_GAP = 5;
 
-    public AddPlayerListScreen() {
+    public AddPlayerListScreen(RefreshableGUIDescription parent) {
         WGridPanel root = new WGridPanel();
         root.setSize(GRID_COLUMNS * GRID_SIZE, GRID_ROWS * GRID_SIZE);
         root.setGaps(GRID_GAP, GRID_GAP);
@@ -57,6 +58,7 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
                 newList.setWarningsEnabled(warningsEnabled);
                 PlayerListManager.addPlayerList(newList);
                 ClientScreen.closeScreen();
+                parent.refreshGUI();
             } else {
                 BananaAlert.showError(Text.translatable("toast.banana-alert.error.require_list_name"));
             }

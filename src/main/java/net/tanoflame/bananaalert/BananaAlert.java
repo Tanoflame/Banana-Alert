@@ -1,5 +1,6 @@
 package net.tanoflame.bananaalert;
 
+import io.github.cottonmc.cotton.gui.impl.client.LibGuiClient;
 import net.fabricmc.api.ClientModInitializer;
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
