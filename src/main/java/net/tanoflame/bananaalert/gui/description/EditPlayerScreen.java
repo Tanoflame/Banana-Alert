@@ -10,8 +10,10 @@ import io.github.cottonmc.cotton.gui.widget.data.VerticalAlignment;
 import net.minecraft.text.Text;
 import net.tanoflame.bananaalert.BananaAlert;
 import net.tanoflame.bananaalert.PlayerEntry;
+import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
+import net.tanoflame.bananaalert.util.Util;
 
 public class EditPlayerScreen extends LightweightGuiDescription {
     private static final int GRID_COLUMNS = 12;
@@ -61,6 +63,9 @@ public class EditPlayerScreen extends LightweightGuiDescription {
                 player.setName(newName);
                 player.setNotes(newNotes);
                 ClientScreen.closeScreen();
+                PlayerList list = PlayerListManager.getList(player.getPlayerListId());
+                Util.DisplayToast(Text.translatable("toast.banana-alert.edit_player.title"),
+                        Text.translatable("toast.banana-alert.edit_player.description", player.getName(), list.getName()));
             } else {
                 BananaAlert.showError(Text.translatable("gui.banana-alert.error.require_player_name"));
             }

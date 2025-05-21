@@ -5,10 +5,12 @@ import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import net.minecraft.text.Text;
 import net.tanoflame.bananaalert.PlayerEntry;
+import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
 import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
 import net.tanoflame.bananaalert.gui.description.EditPlayerScreen;
+import net.tanoflame.bananaalert.util.Util;
 
 public class PlayerEntryWidget extends WGridPanel {
 
@@ -30,6 +32,9 @@ public class PlayerEntryWidget extends WGridPanel {
         removeButton.setOnClick(() -> {
             PlayerListManager.removePlayerEntry(player);
             parent.refreshGUI();
+            PlayerList list = PlayerListManager.getList(player.getPlayerListId());
+            Util.DisplayToast(Text.translatable("toast.banana-alert.delete_player.title"),
+                    Text.translatable("toast.banana-alert.delete_player.description", player.getName(), list.getName()));
         });
         this.add(removeButton, gridColumns - 1, 0, 1, 1);
     }

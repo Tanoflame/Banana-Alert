@@ -11,6 +11,7 @@ import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
 import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
 import net.tanoflame.bananaalert.gui.description.PlayerListDetailsScreen;
+import net.tanoflame.bananaalert.util.Util;
 
 public class PlayerListEntryWidget extends WGridPanel {
 
@@ -34,9 +35,10 @@ public class PlayerListEntryWidget extends WGridPanel {
 
         WButton deleteButton = new WButton(Text.of("X"));
         deleteButton.setOnClick(() -> {
-            System.out.println("Delete");
             PlayerListManager.removeList(list.getId());
             parent.refreshGUI();
+            Util.DisplayToast(Text.translatable("toast.banana-alert.delete_list.title"),
+                    Text.translatable("toast.banana-alert.delete_list.description", list.getName()));
         });
         add(deleteButton, gridColumns - 1, 0, 2, 1);
     }

@@ -10,6 +10,7 @@ import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
 import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
+import net.tanoflame.bananaalert.util.Util;
 
 public class AddPlayerListScreen extends LightweightGuiDescription {
     private static final int GRID_COLUMNS = 10;
@@ -59,6 +60,8 @@ public class AddPlayerListScreen extends LightweightGuiDescription {
                 PlayerListManager.addPlayerList(newList);
                 ClientScreen.closeScreen();
                 parent.refreshGUI();
+                Util.DisplayToast(Text.translatable("toast.banana-alert.add_list.title"),
+                        Text.translatable("toast.banana-alert.add_list.description", newList.getName()));
             } else {
                 BananaAlert.showError(Text.translatable("toast.banana-alert.error.require_list_name"));
             }

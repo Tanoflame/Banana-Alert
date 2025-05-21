@@ -2,8 +2,23 @@
   "key.category.banana-alert": "Banana Alert",
   "key.banana-alert.open_lists_view": "Open Lists Overview",
   
-  "toast.banana-alert.warning.title": "Attacked player",
+  "toast.banana-alert.warning.title": "Attacked Player",
   "toast.banana-alert.warning.description": "You hit %s, a member of %s",
+
+  "toast.banana-alert.add_list.title": "Added List",
+  "toast.banana-alert.add_list.description": "Added list %s",
+
+  "toast.banana-alert.delete_list.title": "Deleted List",
+  "toast.banana-alert.delete_list.description": "Deleted list %s",
+
+  "toast.banana-alert.add_player.title": "Added Player",
+  "toast.banana-alert.add_player.description": "Added %s to %s",
+
+  "toast.banana-alert.delete_player.title": "Deleted Player",
+  "toast.banana-alert.delete_player.description": "Deleted %s from list %s",
+
+  "toast.banana-alert.edit_player.title": "Edited Player",
+  "toast.banana-alert.edit_player.description": "Edited %s in list %s",
 
   "toast.banana-alert.error": "Error",
   "toast.banana-alert.error.require_list_name": "List name is required",
