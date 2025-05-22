@@ -31,7 +31,7 @@ public class PlayerListEntryWidget extends WGridPanel {
         editButton.setOnClick(() -> {
             ClientScreen.openScreen(new PlayerListDetailsScreen(list));
         });
-        add(editButton, gridColumns - 3, 0, 2, 1);
+        add(editButton, gridColumns - 1, 0, 2, 1);
 
         WButton deleteButton = new WButton(Text.of("X"));
         deleteButton.setOnClick(() -> {
@@ -40,6 +40,6 @@ public class PlayerListEntryWidget extends WGridPanel {
             Util.DisplayToast(Text.translatable("toast.banana-alert.delete_list.title"),
                     Text.translatable("toast.banana-alert.delete_list.description", list.getName()));
         });
-        add(deleteButton, gridColumns - 1, 0, 2, 1);
+        add(deleteButton, gridColumns + 1, 0, 2, 1);
     }
 }

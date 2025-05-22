@@ -16,7 +16,7 @@ public class PlayerEntryWidget extends WGridPanel {
 
     public PlayerEntryWidget(PlayerEntry player, int gridSize, int gridColumns, RefreshableGUIDescription parent) {
         super(gridSize);
-        this.setSize(gridColumns * 18, 18);
+        this.setSize(gridColumns * gridSize, gridSize);
 
         // Player Name Label
         WLabel nameLabel = new WLabel(Text.of(player.getName()));
@@ -24,8 +24,8 @@ public class PlayerEntryWidget extends WGridPanel {
 
         // Edit Button
         WButton editButton = new WButton(Text.translatable("gui.banana-alert.edit"));
-        editButton.setOnClick(() -> ClientScreen.openScreen(new EditPlayerScreen(player)));
-        this.add(editButton, gridColumns - 3, 0, 2, 1);
+        editButton.setOnClick(() -> ClientScreen.openScreen(new EditPlayerScreen(player, parent)));
+        this.add(editButton, gridColumns - 1, 0, 2, 1);
 
         // Remove Button
         WButton removeButton = new WButton(Text.of("X"));
@@ -36,6 +36,6 @@ public class PlayerEntryWidget extends WGridPanel {
             Util.DisplayToast(Text.translatable("toast.banana-alert.delete_player.title"),
                     Text.translatable("toast.banana-alert.delete_player.description", player.getName(), list.getName()));
         });
-        this.add(removeButton, gridColumns - 1, 0, 1, 1);
+        this.add(removeButton, gridColumns + 1, 0, 1, 1);
     }
 }

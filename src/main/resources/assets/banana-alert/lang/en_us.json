@@ -20,6 +20,9 @@
   "toast.banana-alert.edit_player.title": "Edited Player",
   "toast.banana-alert.edit_player.description": "Edited %s in list %s",
 
+  "toast.banana-alert.move_player.title": "Moved Player",
+  "toast.banana-alert.move_player.description": "Moved %s to %s",
+
   "toast.banana-alert.error": "Error",
   "toast.banana-alert.error.require_list_name": "List name is required",
   "toast.banana-alert.error.retrieve_player_by_name": "List name is required",
@@ -29,6 +32,7 @@
   "gui.banana-alert.delete": "Delete",
   "gui.banana-alert.cancel": "Cancel",
   "gui.banana-alert.edit": "Edit",
+  "gui.banana-alert.move": "Move",
 
   "gui.banana-alert.list_overview.title": "Player List Manager",
   "gui.banana-alert.list_overview.add_list": "Add New List",
@@ -44,5 +48,7 @@
 
   "gui.banana-alert.player_screen.uuid": "UUID:",
   "gui.banana-alert.player_screen.name": "Name:",
-  "gui.banana-alert.player_screen.notes": "Notes:"
+  "gui.banana-alert.player_screen.notes": "Notes:",
+
+  "gui.banana-alert.move_player.title": "Move player '%s'"
 }
