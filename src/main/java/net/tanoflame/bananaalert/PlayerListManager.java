@@ -70,21 +70,18 @@ public class PlayerListManager {
     // AddPlayerEntry, listId and player name
     public @Nullable static PlayerEntry addPlayerEntry(UUID listId, String name) {
         UUID playerId = null;
-        if (BananaAlert.isDevEnvironment()) {
-            playerId = UUID.randomUUID();
-        } else {
-            try {
-                UUID uuid = BananaAlert.LOOKUP_CLIENT.getUUIDFromName(name);
+        try {
+            UUID uuid = BananaAlert.LOOKUP_CLIENT.getUUIDFromName(name);
 
-                if (uuid.equals(Util.NIL_UUID)) {
-                    return null;
-                }
-
-                playerId = uuid;
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
+            if (uuid.equals(Util.NIL_UUID)) {
+                return null;
             }
+
+            playerId = uuid;
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
+
 
         PlayerEntry entry = new PlayerEntry(playerId, name);
         addPlayerEntry(listId, entry);
