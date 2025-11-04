@@ -50,5 +50,7 @@
   "gui.banana-alert.player_screen.name": "Name:",
   "gui.banana-alert.player_screen.notes": "Notes:",
 
-  "gui.banana-alert.move_player.title": "Move player '%s'"
+  "gui.banana-alert.move_player.title": "Move player '%s'",
+
+  "gui.banana-alert.add_player.title": "Add player to %s"
 }

@@ -13,7 +13,6 @@ import net.tanoflame.bananaalert.PlayerEntry;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
-import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
 import net.tanoflame.bananaalert.util.Util;
 
 public class EditPlayerScreen extends LightweightGuiDescription {
@@ -22,7 +21,7 @@ public class EditPlayerScreen extends LightweightGuiDescription {
     private static final int GRID_SIZE = 18;
     private static final int GRID_GAP = 5;
 
-    public EditPlayerScreen(PlayerEntry player, RefreshableGUIDescription parent) {
+    public EditPlayerScreen(PlayerEntry player, PlayerListDetailsScreen parent) {
         WGridPanel root = new WGridPanel(GRID_SIZE);
         root.setSize(GRID_COLUMNS * GRID_SIZE, GRID_ROWS * GRID_SIZE);
         root.setGaps(GRID_GAP, GRID_GAP);

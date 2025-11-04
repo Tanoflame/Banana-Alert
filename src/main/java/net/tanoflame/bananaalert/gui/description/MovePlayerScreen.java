@@ -12,7 +12,6 @@ import net.tanoflame.bananaalert.PlayerEntry;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
-import net.tanoflame.bananaalert.gui.RefreshableGUIDescription;
 import net.tanoflame.bananaalert.util.Util;
 import org.jetbrains.annotations.Nullable;
 
@@ -34,7 +33,7 @@ public class MovePlayerScreen extends LightweightGuiDescription {
 
     @Nullable private Runnable onSave;
 
-    public MovePlayerScreen(PlayerEntry player, RefreshableGUIDescription refresh) {
+    public MovePlayerScreen(PlayerEntry player, PlayerListDetailsScreen refresh) {
         this.player = player;
         list = player.getPlayerListId();
         WGridPanel root = new WGridPanel(GRID_SIZE);
