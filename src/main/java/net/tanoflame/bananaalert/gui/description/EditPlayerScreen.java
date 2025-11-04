@@ -10,8 +10,10 @@ import io.github.cottonmc.cotton.gui.widget.data.VerticalAlignment;
 import net.minecraft.text.Text;
 import net.tanoflame.bananaalert.BananaAlert;
 import net.tanoflame.bananaalert.PlayerEntry;
+import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
+import net.tanoflame.bananaalert.util.Util;
 
 public class EditPlayerScreen extends LightweightGuiDescription {
     private static final int GRID_COLUMNS = 12;
@@ -19,8 +21,8 @@ public class EditPlayerScreen extends LightweightGuiDescription {
     private static final int GRID_SIZE = 18;
     private static final int GRID_GAP = 5;
 
-    public EditPlayerScreen(PlayerEntry player) {
-        WGridPanel root = new WGridPanel();
+    public EditPlayerScreen(PlayerEntry player, PlayerListDetailsScreen parent) {
+        WGridPanel root = new WGridPanel(GRID_SIZE);
         root.setSize(GRID_COLUMNS * GRID_SIZE, GRID_ROWS * GRID_SIZE);
         root.setGaps(GRID_GAP, GRID_GAP);
         root.setInsets(Insets.ROOT_PANEL);
@@ -61,22 +63,29 @@ public class EditPlayerScreen extends LightweightGuiDescription {
                 player.setName(newName);
                 player.setNotes(newNotes);
                 ClientScreen.closeScreen();
+                PlayerList list = PlayerListManager.getList(player.getPlayerListId());
+                Util.DisplayToast(Text.translatable("toast.banana-alert.edit_player.title"),
+                        Text.translatable("toast.banana-alert.edit_player.description", player.getName(), list.getName()));
             } else {
                 BananaAlert.showError(Text.translatable("gui.banana-alert.error.require_player_name"));
             }
         });
-        root.add(saveButton, 0, 5, 4, 1);
+        root.add(saveButton, 0, 5, 3, 1);
 
         WButton deleteButton = new WButton(Text.translatable("gui.banana-alert.delete"));
         deleteButton.setOnClick(() -> {
             PlayerListManager.removePlayerEntry(player);
             ClientScreen.closeScreen();
         });
-        root.add(deleteButton, 4, 5, 4, 1);
+        root.add(deleteButton, 3, 5, 3, 1);
+
+        WButton moveButton = new WButton(Text.translatable("gui.banana-alert.move"));
+        moveButton.setOnClick(() -> ClientScreen.openScreen(new MovePlayerScreen(player, parent).setOnSave(ClientScreen::closeScreen)));
+        root.add(moveButton, 6, 5, 3, 1);
 
         WButton cancelButton = new WButton(Text.translatable("gui.banana-alert.cancel"));
         cancelButton.setOnClick(ClientScreen::closeScreen);
-        root.add(cancelButton, 8, 5, 4, 1);
+        root.add(cancelButton, 9, 5, 3, 1);
 
         setRootPanel(root);
         root.validate(this);

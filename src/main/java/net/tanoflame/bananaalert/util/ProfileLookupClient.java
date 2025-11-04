@@ -1,6 +1,7 @@
 package net.tanoflame.bananaalert.util;
 
 import com.google.gson.*;
+import net.minecraft.util.Uuids;
 import net.tanoflame.bananaalert.BananaAlert;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +30,7 @@ public class ProfileLookupClient {
     }
 
     public UUID getUUIDFromName(String name) throws IOException, InterruptedException {
-        if (BananaAlert.isDevEnvironment()) return null;
+        if (BananaAlert.isDevEnvironment()) return Uuids.getOfflinePlayerUuid(name);
 
         Optional<LookupReturn> cachedLookup = cache.stream().filter((lookupReturn -> Objects.equals(lookupReturn.name, name))).findFirst();
         if (cachedLookup.isPresent()) {
@@ -63,6 +64,7 @@ public class ProfileLookupClient {
     }
 
     public @Nullable String getNameFromUUID(UUID uuid) throws IOException, InterruptedException {
+        // Fix for offline mode
         if (BananaAlert.isDevEnvironment()) return null;
 
         Optional<LookupReturn> cachedLookup = cache.stream().filter((lookupReturn -> Objects.equals(lookupReturn.id, uuid))).findFirst();
