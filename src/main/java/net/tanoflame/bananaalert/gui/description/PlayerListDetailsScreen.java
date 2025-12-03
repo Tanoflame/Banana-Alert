@@ -1,6 +1,5 @@
 package net.tanoflame.bananaalert.gui.description;
 
-import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.minecraft.text.Text;
@@ -11,11 +10,11 @@ import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
 import net.tanoflame.bananaalert.util.Util;
 
-import java.util.List;
 import java.util.AbstractList;
+import java.util.List;
 import java.util.function.BiConsumer;
 
-public class PlayerListDetailsScreen extends LightweightGuiDescription {
+public class PlayerListDetailsScreen extends RefreshableGUIDescription {
     private static final int GRID_COLUMNS = 10;
     private static final int GRID_ROWS = 10;
     private static final int GRID_SIZE = 18;
@@ -69,6 +68,7 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
         };
 
         this.playerListPanel = new WListPanel<>(data, PlayerEntryRow::new, configurator);
+        this.playerListPanel.getScrollBar().setScrollingSpeed(1);
         this.playerListPanel.setListItemHeight(GRID_SIZE);
         root.add(this.playerListPanel, 0, 5, GRID_COLUMNS, 4);
 
@@ -91,11 +91,19 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
         root.validate(this);
     }
 
+    @Override
     public void refreshGUI() {
-        // Re-validate to run layout and ensure visible rows update immediately
-        if (getRootPanel() != null) getRootPanel().validate(this);
-        // Update visible row labels (name might have changed)
-        for (WWidget child : this.playerListPanel.streamChildren().toList()) {
+        if (playerListPanel == null) return;
+
+        if (getRootPanel() != null) {
+            getRootPanel().validate(this);
+        } else {
+            // fallback to list-only layout
+            playerListPanel.layout();
+        }
+
+        // Re-configure visible rows so changes show immediately
+        for (WWidget child : playerListPanel.streamChildren().toList()) {
             if (child instanceof PlayerEntryRow row) {
                 row.setNameLabel();
             }
@@ -130,6 +138,17 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
         }
 
         @Override
+        public boolean canResize() {
+            return true;
+        }
+
+        @Override
+        public void setSize(int x, int y) {
+            super.setSize(x, y);
+            this.layout();
+        }
+
+        @Override
         public void layout() {
             int padding = 4;
             int gap = 4;
@@ -157,7 +176,12 @@ public class PlayerListDetailsScreen extends LightweightGuiDescription {
         }
 
         public void setNameLabel() {
-            this.name.setText(Text.of(entry.getName()));
+            if (entry == null)
+            {
+                this.name.setText(Text.literal(""));
+            } else {
+                this.name.setText(Text.of(entry.getName()));
+            }
         }
     }
 }

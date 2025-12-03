@@ -1,12 +1,10 @@
 package net.tanoflame.bananaalert.gui.description;
 
-import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.tanoflame.bananaalert.BananaAlert;
 import net.tanoflame.bananaalert.PlayerList;
 import net.tanoflame.bananaalert.PlayerListManager;
 import net.tanoflame.bananaalert.gui.ClientScreen;
@@ -16,7 +14,7 @@ import java.util.AbstractList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-public class PlayerListOverviewScreen extends LightweightGuiDescription {
+public class PlayerListOverviewScreen extends RefreshableGUIDescription {
     private static final int GRID_COLUMNS = 16;
     private static final int GRID_ROWS = 11;
     private static final int GRID_SIZE = 18;
@@ -72,7 +70,7 @@ public class PlayerListOverviewScreen extends LightweightGuiDescription {
         setRootPanel(root);
     }
 
-    // Re-layout the list and its current children so newly created entries format immediately
+    @Override
     public void refreshGUI() {
         if (playerListPanel == null) return;
         // Full validate cascades layout through the entire widget tree,
@@ -118,6 +116,17 @@ public class PlayerListOverviewScreen extends LightweightGuiDescription {
             this.add(name, 0, 0, 100, GRID_SIZE);
             this.add(editButton, 0, 0, 50, GRID_SIZE);
             this.add(deleteButton, 0, 0, 18, GRID_SIZE);
+        }
+
+        @Override
+        public boolean canResize() {
+            return true;
+        }
+
+        @Override
+        public void setSize(int x, int y) {
+            super.setSize(x, y);
+            this.layout();
         }
 
         @Override

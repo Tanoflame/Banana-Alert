@@ -16,7 +16,7 @@ Banana Alert is a Minecraft mod that provides a system for managing player lists
 
 #### Enhancements
 - [ ] Add import/export functionality for individual lists.
-- [ ] Enable moving players between lists.
+- [x] Enable moving players between lists.
 - [ ] Add support for alternate accounts (alts).
 - [ ] Keybind to add player looking at to a list.
 

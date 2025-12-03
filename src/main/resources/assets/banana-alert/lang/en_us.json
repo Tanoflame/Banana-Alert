@@ -1,7 +1,8 @@
 {
   "key.category.banana-alert": "Banana Alert",
   "key.banana-alert.open_lists_view": "Open Lists Overview",
-  
+  "key.banana-alert.add_player": "Add Player To List",
+
   "toast.banana-alert.warning.title": "Attacked Player",
   "toast.banana-alert.warning.description": "You hit %s, a member of %s",
 
@@ -23,10 +24,16 @@
   "toast.banana-alert.move_player.title": "Moved Player",
   "toast.banana-alert.move_player.description": "Moved %s to %s",
 
+  "toast.banana-alert.no_player.title": "No Player",
+  "toast.banana-alert.no_player.description": "No Player Selected",
+
   "toast.banana-alert.error": "Error",
   "toast.banana-alert.error.require_list_name": "List name is required",
-  "toast.banana-alert.error.retrieve_player_by_name": "List name is required",
+  "toast.banana-alert.error.retrieve_player_by_name": "Unable to find that name",
   "toast.banana-alert.error.require_player_name": "Player name is required",
+  "toast.banana-alert.error.retrieve_player_by_uuid": "Unable to find that uuid",
+
+  "gui.banana-alert.no_lists": "No Lists",
 
   "gui.banana-alert.save": "Save",
   "gui.banana-alert.delete": "Delete",
@@ -52,5 +59,7 @@
 
   "gui.banana-alert.move_player.title": "Move player '%s'",
 
-  "gui.banana-alert.add_player.title": "Add player to %s"
+  "gui.banana-alert.add_player.title": "Add player to %s",
+
+  "gui.banana-alert.select_list.title": "Select list for %s"
 }
